@@ -8,7 +8,7 @@ source("rutinas/99_librerias_funciones/unzip.R")
 #-------------------------------------------------------------------------------
 
 base <- read_zip("insumos/01_estimaciones", "Base EUT 2012.zip", "Base EUT 2012.sav") %>% 
-  clean_names() %>% 
+  clean_names() 
   
 #-------------------------------------------------------------------------------
 # Identificadores de las ciudades autorepresentadas ----------------------------
