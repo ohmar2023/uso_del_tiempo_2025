@@ -1,0 +1,33 @@
+
+--------------------------------------------------------------------------------------
+* N Tamaño de la población.
+
+* M Número de conglomerados en la población.
+--------------------------------------------------------------------------------------
+
+
+
+--------------------------------------------------------------------------------------
+* mu Valor de la media estimada de una variable de interés.
+
+* sigma Valor de la desviación estándar estimada de una variable de interés.
+
+--------------------------------------------------------------------------------------
+
+
+
+--------------------------------------------------------------------------------------
+
+* rho Coeficiente de correlación intraclase.
+   - rho = (deff - 1)/(prom_hog_upm * 12 - 1)
+
+* delta Máximo margen de error permitido para la estimación.
+   - mer_delta = (error_estandar * 1.96)/ (estimacion_media_mu)
+
+
+
+--------------------------------------------------------------------------------------
+* conf Confianza estadística. Por defecto, conf = 0,95.
+
+* m (vector) Número de hogares seleccionados dentro de la UPM.
+--------------------------------------------------------------------------------------

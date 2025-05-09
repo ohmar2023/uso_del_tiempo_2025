@@ -19,5 +19,6 @@ library(survey)
 library(reshape2)
 library(sjlabelled)
 library(ggplot2)
+library(samplesize4surveys)
 
 print("Se han leido las librerias")
