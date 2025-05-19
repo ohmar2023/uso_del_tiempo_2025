@@ -1,7 +1,13 @@
 
-domtotal_12 <- tam_eut_2025(m = 12, tnr = 0.20, delta = 0.060)
-domtotal_10 <- tam_eut_2025(m = 10, tnr = 0.20, delta = 0.060)
-domtotal_08 <- tam_eut_2025(m =  8, tnr = 0.20, delta = 0.060)
+m = 12
+tnr = 0.20
+delta = 0.060
+
+domtotal_12 <- tam_eut_2025(m = 12, tnr = 0.20, delta = 0.06)
+domtotal_10 <- tam_eut_2025(m = 10, tnr = 0.20, delta = 0.06)
+domtotal_08 <- tam_eut_2025(m =  8, tnr = 0.20, delta = 0.06)
+
+export(domtotal_12, "eut_domtotal_12.xlsx")
 
 #-------------------------------------------------------------------------------
 # EXPORTANDO

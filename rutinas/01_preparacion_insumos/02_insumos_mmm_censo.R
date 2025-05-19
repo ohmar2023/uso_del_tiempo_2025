@@ -3,17 +3,25 @@
 # MMM: Numero de UPMS en la poblacion: M
 #-------------------------------------------------------------------------------
 
-marco <- import("insumos/01_estimaciones/20211025_marco_upm.rds") %>% 
-  mutate(cod_4 = substr(id_conglomerado,1,4))
+# marco_borr <- import("insumos/01_estimaciones/20211025_marco_upm.rds") %>% 
+#   mutate(cod_4 = substr(id_conglomerado,1,4))
+
+marco <- import("insumos/01_estimaciones/marco_upm_01.rds")
 
 upm_prov <- marco %>%  
-  #filter(!cod_4 %in% v_ciudades_auto) %>% 
+  mutate( dom = substr(id_upm, 1, 2)) %>% 
   group_by(dom) %>% summarise(n_upm_pobl = n())
 
 upm_ciudades_auto <- marco %>% 
-  filter(cod_4 %in% v_ciudades_auto) %>% 
-  group_by(cod_4) %>% 
-  summarise(n_upm_pobl = n()) %>% rename("dom" = cod_4)
+  mutate(estrato_eut = case_when(substr(id_upm, 1, 4) == "0901" & area == "2" ~ "4229", 
+                                 T ~ estrato),  
+         dom = substr(id_upm, 1, 2), 
+         dom = case_when(dom == "17" & substr(estrato_eut, 1, 2) == "33" ~ "1701", 
+                         dom == "09" & substr(estrato_eut, 1, 2) == "42" ~ "0901", 
+                         T ~ dom)) %>% 
+  filter(dom %in% c("1701","0901")) %>%
+  group_by(dom) %>% 
+  summarise(n_upm_pobl = n())
 
 upm_dom <- rbind(upm_prov,upm_ciudades_auto)
 
