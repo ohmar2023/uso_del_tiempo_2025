@@ -1,13 +1,13 @@
+# 
+# m = 12
+# tnr = 0.20
+# delta = 0.060
 
-m = 12
-tnr = 0.20
-delta = 0.060
+domtotal_12 <- tam_eut_2025(m = 12, tnr = 0.20, delta = 0.05)
+domtotal_10 <- tam_eut_2025(m = 10, tnr = 0.20, delta = 0.05)
+domtotal_08 <- tam_eut_2025(m =  8, tnr = 0.20, delta = 0.05)
 
-domtotal_12 <- tam_eut_2025(m = 12, tnr = 0.20, delta = 0.06)
-domtotal_10 <- tam_eut_2025(m = 10, tnr = 0.20, delta = 0.06)
-domtotal_08 <- tam_eut_2025(m =  8, tnr = 0.20, delta = 0.06)
-
-export(domtotal_12, "eut_domtotal_12.xlsx")
+#export(domtotal_12, "eut_domtotal_12.xlsx")
 
 #-------------------------------------------------------------------------------
 # EXPORTANDO
@@ -26,9 +26,4 @@ writeData(wb, sheet = "m = 12", domtotal_12)
 writeData(wb, sheet = "m = 10", domtotal_10)
 writeData(wb, sheet = "m = 8", domtotal_08)
 
-saveWorkbook(wb, paste0(ruta,"/resultado_TTT.xlsx"), overwrite = T)
-
-
-
-
-
+saveWorkbook(wb, paste0(ruta,"/resultado_DOMTOTAL_5PORC.xlsx"), overwrite = T)
