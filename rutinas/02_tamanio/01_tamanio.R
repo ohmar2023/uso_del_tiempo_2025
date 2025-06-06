@@ -9,9 +9,11 @@ source("rutinas/99_librerias_funciones/unzip.R")
 # Lectura de bases de insumos
 #-------------------------------------------------------------------------------
 
-ruta <- "intermedios/01_insumos_tamanio/"
+ruta <- "intermedios/01_insumos_tamanio/base_insumos.rds"
 
-base_insumos <- import(paste0(ruta, "base_insumos.rds"))
+#ruta <- "intermedios/01_insumos_tamanio/03_ejercicio_enemdu/base_insumos_enemdu.xlsx"  
+
+base_insumos <- import(ruta)
 #base_insumos <- import(paste0(ruta, "base_insumos_mod.xlsx"))
 
 #-------------------------------------------------------------------------------
@@ -46,6 +48,10 @@ n_upm <- c()
 dominio <- c()
 
 for (i in 1:dim(base_insumos)[1]){
+  
+  if(base_insumos$dominio[i] == "Galápagos"){
+    delta = 0.06
+  }
   
   n_per[i] <- ss4m(N = N[i], 
                    mu = mu[i], 

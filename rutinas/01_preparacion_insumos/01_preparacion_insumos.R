@@ -1,7 +1,7 @@
 
 rm(list = ls())
 
-source("rutinas/99_librerias_funciones/librerias.R")
+#source("rutinas/99_librerias_funciones/librerias.R")
 source("rutinas/99_librerias_funciones/unzip.R")
 
 #-------------------------------------------------------------------------------
@@ -34,6 +34,9 @@ per_por_hogar <- base %>%
   group_by(dom) %>% 
   summarise(b = mean(n))
 
+per_por_hogar <- rbind(per_por_hogar, c(dom = "20", b = mean(per_por_hogar$b))) %>% 
+  mutate(b = as.numeric(b))
+
 #-------------------------------------------------------------------------------
 # MM: Numero de UPMS en la poblacion: M & Calculo N desde el CENSO: Personas mayores a 12 años.
 #-------------------------------------------------------------------------------
@@ -41,16 +44,25 @@ per_por_hogar <- base %>%
 source("rutinas/01_preparacion_insumos/02_insumos_mmm_censo.R")
 
 #-------------------------------------------------------------------------------
-# Lectura estimaciones - DIES
+# Lectura estimaciones - DIES - EUT-2012
 #-------------------------------------------------------------------------------
 
 # 1: resultado_DOMTOTAL
 # 2: resultado_REMUNTOT
 # 3: resultado_TTT
 
-ind <- read_excel("insumos/01_estimaciones/Reporte_06_mayo_2025.xlsx", 
-           sheet = "resultado_DOMTOTAL" ) %>% 
-  clean_names() 
+ind <- read_excel("insumos/01_estimaciones/Reporte_06_mayo_2025.xlsx",
+           sheet = "resultado_DOMTOTAL" ) %>%
+  clean_names()
+
+
+#-------------------------------------------------------------------------------
+# Lectura estimaciones - DIES - ENEMDU
+#-------------------------------------------------------------------------------
+
+# ind <- read_excel("insumos/01_estimaciones/Reporte_enemdu_jun15.xlsx" ) %>% 
+#   clean_names() 
+
 
 #-------------------------------------------------------------------------------
 # Estimacion SD
@@ -91,7 +103,9 @@ ind <- ind %>% select(dominio,
                       "deff"                   = tiempo_medio_deff,
                       "N_pobl"                 = N, 
                       "upm_pobl_M"             = n_upm_pobl, 
-                      "b"                      = b) 
+                      "b"                      = b)
+
+#ind <- ind %>% mutate(deff = ifelse(dominio == "Galápagos", 1.5, deff)) %>% View()
 
 ind <- ind %>% mutate(mer_delta = error_estandar * 1.96/estimacion_media_mu, 
                rho = (deff - 1)/( b * 12 - 1), 
