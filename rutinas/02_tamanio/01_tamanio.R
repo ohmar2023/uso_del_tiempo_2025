@@ -49,9 +49,9 @@ dominio <- c()
 
 for (i in 1:dim(base_insumos)[1]){
   
-  if(base_insumos$dominio[i] == "Galápagos"){
-    delta = 0.06
-  }
+  # if(base_insumos$dominio[i] == "Galápagos"){
+  #   delta = 0.06
+  # }
   
   n_per[i] <- ss4m(N = N[i], 
                    mu = mu[i], 

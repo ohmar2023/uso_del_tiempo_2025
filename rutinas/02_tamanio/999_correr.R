@@ -7,11 +7,11 @@ rm(list = ls())
 
 source("rutinas/02_tamanio/01_tamanio.R")
 
-domtotal_12 <- tam_eut_2025(m = 12, tnr = 0.20, delta = 0.05)
-domtotal_10 <- tam_eut_2025(m = 10, tnr = 0.20, delta = 0.05)
-domtotal_08 <- tam_eut_2025(m =  8, tnr = 0.20, delta = 0.05)
+#domtotal_12 <- tam_eut_2025(m = 12, tnr = 0.20, delta = 0.05)
+#domtotal_10 <- tam_eut_2025(m = 10, tnr = 0.20, delta = 0.05)
+domtotal_09 <- tam_eut_2025(m =  9, tnr = 0.20, delta = 0.055)
 
-export(domtotal_08, "resultado_DOMTOTAL_5_PORC.xlsx")
+export(domtotal_09 %>% select(dom, dominio, n_upm_muestra, n_viv_muestra), "resultado_DOMTOTAL_todo_0055PORC_002.xlsx")
 
 #-------------------------------------------------------------------------------
 # EXPORTANDO
